@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: webserver
+
+server:
+  port: 8080
+  forward-headers-strategy: NATIVE
+
+logging:
+  config: classpath:log4j2-plain.xml
+
+spring-doc:
+  swagger-ui:
+    path: /swagger-ui
+  default-produces-media-type: application/json
