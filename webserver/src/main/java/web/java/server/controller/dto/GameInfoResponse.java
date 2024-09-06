@@ -7,6 +7,6 @@ public record GameInfoResponse(
     int width,
     int height,
     int mines_count,
-    boolean completed,
-    String[][] field
+    String[][] field,
+    boolean completed
 ) { }

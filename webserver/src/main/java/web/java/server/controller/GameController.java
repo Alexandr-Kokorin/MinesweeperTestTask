@@ -14,10 +14,13 @@ import web.java.server.controller.dto.ErrorResponse;
 import web.java.server.controller.dto.GameInfoResponse;
 import web.java.server.controller.dto.GameTurnRequest;
 import web.java.server.controller.dto.NewGameRequest;
+import web.java.server.service.GameService;
 
 @AllArgsConstructor
 @RestController
-public class Controller {
+public class GameController {
+
+    private GameService gameService;
 
     @Operation(summary = "Начало новой игры")
     @ApiResponses(value = {
@@ -32,7 +35,7 @@ public class Controller {
     })
     @PostMapping(path = "/new")
     public ResponseEntity<GameInfoResponse> createGame(@RequestBody NewGameRequest newGameRequest) {
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(gameService.createGame(newGameRequest));
     }
 
     @Operation(summary = "Ход пользователя")
@@ -47,7 +50,7 @@ public class Controller {
                                         schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PostMapping(path = "/turn")
-    public ResponseEntity<GameInfoResponse> makeMove(@RequestBody GameTurnRequest gameTurnRequest) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<GameInfoResponse> updateGame(@RequestBody GameTurnRequest gameTurnRequest) {
+        return ResponseEntity.ok(gameService.updateGame(gameTurnRequest));
     }
 }
